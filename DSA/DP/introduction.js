@@ -117,3 +117,24 @@ You have a robot on the top-left corner of a grid with size m x n.
 The robot can only move right or down at any point.
 Find how many unique paths the robot can take to reach the bottom-right corner.
 */
+//Notice that to reach any cell (i, j), the robot must come either from the cell above (i-1, j) or the cell to the left (i, j-1). Therefore, the number of paths to (i, j) is the sum of the number of paths to (i-1, j) and (i, j-1). This suggests a dynamic programming approach.
+function path(n, m) {
+  // base case: only one path if we are in first row or first column
+
+  if (n === 1 || m === 1) {
+    return 1;
+  }
+  // recurrence relation
+  return path(n - 1, m) + path(n, m - 1);
+}
+console.log(path(4, 5));
+
+function pathDP(n, m) {
+  const table = Array.from({ length: n }, () => new Array(m));
+  for (let i = 1; i < n; i++) {
+    for (let j = 1; j < m; j++) {
+      table[i][j] = table[i - 1][j] + table[i][j - 1];
+    }
+  }
+  return table[n - 1][m - 1];
+}
