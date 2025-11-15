@@ -3,16 +3,18 @@ import Order from "./Order";
 import PizzaOfTheDay from "./PizzaOfTheDay";
 import Header from "./Header";
 import { StrictMode, useState } from "react";
+import { CartContext } from "./contexts";
 
 const App = () => {
-  const [cartE, setCartE] = useState([]);
-  console.log("app", cartE);
+  const cartHook = useState([]);
   return (
     <>
       <StrictMode>
-        <Header cartE={cartE} />
-        <Order cartE={cartE} setCartE={setCartE} />
-        <PizzaOfTheDay />
+        <CartContext value={cartHook}>
+          <Header />
+          <Order />
+          <PizzaOfTheDay />
+        </CartContext>
       </StrictMode>
     </>
   );

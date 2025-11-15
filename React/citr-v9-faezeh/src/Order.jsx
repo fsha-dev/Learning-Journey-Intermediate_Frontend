@@ -1,16 +1,18 @@
 import Pizza from "./Pizza";
-import { useState, useEffect } from "react";
+import { useState, useEffect, useContext } from "react";
 import Cart from "./Cart";
+import { CartContext } from "./contexts";
 
 const intl = new Intl.NumberFormat("en-US", {
   style: "currency",
   currency: "USD",
 });
-export default function Order({ cartE: cart, setCartE: setCart }) {
+export default function Order() {
   const [pizzasTypes, setPizzasTypes] = useState([]);
   const [pizzaType, setPizzaType] = useState("pepperoni");
   const [pizzaSize, setPizzaSize] = useState("M");
   const [loading, setLoading] = useState(true);
+  const [cart, setCart] = useContext(CartContext);
 
   let price, selectedPizza;
 
