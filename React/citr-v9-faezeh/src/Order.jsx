@@ -1,12 +1,60 @@
 import Pizza from "./Pizza";
-import { useState } from "react";
-export default function Order() {
+import { useState, useEffect } from "react";
+import Cart from "./Cart";
+
+const intl = new Intl.NumberFormat("en-US", {
+  style: "currency",
+  currency: "USD",
+});
+export default function Order({ cartE: cart, setCartE: setCart }) {
+  const [pizzasTypes, setPizzasTypes] = useState([]);
   const [pizzaType, setPizzaType] = useState("pepperoni");
   const [pizzaSize, setPizzaSize] = useState("M");
+  const [loading, setLoading] = useState(true);
+
+  let price, selectedPizza;
+
+  if (!loading) {
+    selectedPizza = pizzasTypes.find((pizza) => pizzaType === pizza.id);
+    price = intl.format(
+      selectedPizza.sizes ? selectedPizza.sizes[pizzaSize] : "",
+    );
+  }
+
+  async function fetchPizzasType() {
+    const fetchRes = await fetch("api/pizzas");
+    const pizzasJson = await fetchRes.json();
+    setPizzasTypes(pizzasJson);
+    setLoading(false);
+  }
+
+  useEffect(() => {
+    fetchPizzasType();
+  }, []);
+
+  async function checkout() {
+    setLoading(true);
+    await fetch("/api/order", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({ cart }),
+    });
+    setCart([]);
+    setLoading(false);
+  }
+
   return (
     <div className="order">
       <h2>Create Order</h2>
-      <form>
+      <form
+        onSubmit={(e) => {
+          e.preventDefault();
+          setCart([...cart, { pizza: selectedPizza, size: pizzaSize }]);
+          console.log(pizzaSize, selectedPizza);
+        }}
+      >
         <div>
           <div>
             <label htmlFor="pizza-type">Pizza Type</label>
@@ -15,9 +63,11 @@ export default function Order() {
               value={pizzaType}
               onChange={(e) => setPizzaType(e.target.value)}
             >
-              <option value="pepperoni">The Pepperoni Pizza</option>
-              <option value="hawaiian">The Hawaiian Pizza</option>
-              <option value="big-meat">The Big Meat Pizza</option>
+              {pizzasTypes.map((pizza) => (
+                <option key={pizza.id} value={pizza.id}>
+                  {pizza.name}
+                </option>
+              ))}
             </select>
           </div>
           <div>
@@ -61,13 +111,19 @@ export default function Order() {
           <button type="submit">Add to Cart</button>
         </div>
         <div className="order-pizza">
-          <Pizza
-            name="Pepperoni"
-            description="Mozzarella cheese, pepperoni, and tomato sauce"
-            pic="/public/pizzas/pepperoni.webp"
-          />
+          {loading ? (
+            <h2>Loading...</h2>
+          ) : (
+            <Pizza
+              name={selectedPizza.name}
+              description={selectedPizza.description}
+              pic={selectedPizza.image}
+            />
+          )}
+          <p>{price}</p>
         </div>
       </form>
+      {loading ? <h2>Loading...</h2> : <Cart cart={cart} checkout={checkout} />}
     </div>
   );
 }
