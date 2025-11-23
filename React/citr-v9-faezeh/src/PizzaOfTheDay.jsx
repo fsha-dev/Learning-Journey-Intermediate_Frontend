@@ -6,8 +6,8 @@ const intl = new Intl.NumberFormat("en-US", {
 });
 
 function PizzaOfTheDay() {
-  const PizzaOfTheDay = useGetPizzaOfTheDay();
-  if (!PizzaOfTheDay) {
+  const pizza = useGetPizzaOfTheDay();
+  if (!pizza) {
     return <div>Loading...</div>;
   }
   return (
@@ -15,16 +15,16 @@ function PizzaOfTheDay() {
       <h2>Pizza of the Day</h2>
       <div>
         <div className="pizza-of-the-day-info">
-          <h3>{PizzaOfTheDay.name}</h3>
-          <p>{PizzaOfTheDay.description}</p>
+          <h3>{pizza.name}</h3>
+          <p>{pizza.description}</p>
           <p className="pizza-of-the-day-price">
-            From: <span>{intl.format(PizzaOfTheDay.sizes.S)}</span>
+            From: <span>{intl.format(pizza.sizes.S)}</span>
           </p>
         </div>
         <img
           className="pizza-of-the-day-image"
-          src={PizzaOfTheDay.image}
-          alt={PizzaOfTheDay.name}
+          src={pizza.image}
+          alt={pizza.name}
         />
       </div>
     </div>
