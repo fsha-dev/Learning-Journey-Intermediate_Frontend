@@ -3,12 +3,14 @@ import { useEffect, useId, useState } from "react";
 import { queryKeys } from "../../api/config/apiConfig";
 import { searchUserByTerm } from "../../api/apiSearch";
 import styles from "./searchInput.module.css";
+import type { SearchUserByTermResponse } from "../../types/endpoints";
+import CardInfo from "../card-info/CardInfo";
 export default function SearchInput() {
   const [query, setQuery] = useState("");
   const [loadingDebouncedSearch, setLoadingDebouncedSearch] = useState(false);
   const [debouncedQuery, setDebouncedQuery] = useState("");
   const searchInputId = useId();
-  const { data, isLoading, error } = useQuery({
+  const { data, isLoading, error } = useQuery<SearchUserByTermResponse>({
     queryKey: queryKeys.search.byTerm(debouncedQuery),
     queryFn: () => searchUserByTerm(debouncedQuery),
     enabled: !!debouncedQuery,
@@ -46,14 +48,20 @@ export default function SearchInput() {
         </div>
       )}
       {error && <div>Something went wrong try again, later.</div>}
-      {data && <pre>{JSON.stringify(data, null, 2)}</pre>}
-      {/* {data && (
-        <pre>
-          {data.map((item: any) => (
-            <div>{item.name}</div>
-          ))}
-        </pre>
-      )} */}
+      {/* {data && <pre>{JSON.stringify(data, null, 2)}</pre>} */}
+      {data?.items.map((user) => (
+        <CardInfo
+          key={user.id}
+          data={user}
+          renderCardInfo={(user) => (
+            <>
+              <img src={user.avatar_url} alt={user.login} />
+              <h2>{user.login}</h2>
+              <p>{user.type}</p>
+            </>
+          )}
+        />
+      ))}
     </>
   );
 }
