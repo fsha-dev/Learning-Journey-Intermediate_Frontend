@@ -1,11 +1,12 @@
 import { useQuery } from "@tanstack/react-query";
-import { useEffect, useId, useState } from "react";
+import { useEffect, useId, useState, useRef } from "react";
 import { queryKeys } from "../../api/config/apiConfig";
 import { searchUserByTerm } from "../../api/apiSearch";
 import styles from "./searchInput.module.css";
 import type { SearchUserByTermResponse } from "../../types/endpoints";
 import CardInfo from "../card-info/CardInfo";
 export default function SearchInput() {
+  const inputRef = useRef<HTMLInputElement>(null);
   const [query, setQuery] = useState("");
   const [loadingDebouncedSearch, setLoadingDebouncedSearch] = useState(false);
   const [debouncedQuery, setDebouncedQuery] = useState("");
@@ -19,15 +20,20 @@ export default function SearchInput() {
     const debounceSearch = setTimeout(() => {
       setDebouncedQuery(query);
       setLoadingDebouncedSearch(false);
-    }, 3000);
+    }, 500);
 
     return () => clearTimeout(debounceSearch);
   }, [query]);
+
+  useEffect(() => {
+    inputRef.current?.focus();
+  }, []);
   return (
     <>
       <div>
         <label htmlFor={searchInputId}></label>
         <input
+          ref={inputRef}
           className={styles.searchInput}
           placeholder="search username here"
           type="text"
