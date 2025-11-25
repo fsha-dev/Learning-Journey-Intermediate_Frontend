@@ -11,11 +11,12 @@ export default function SearchInput() {
   const [loadingDebouncedSearch, setLoadingDebouncedSearch] = useState(false);
   const [debouncedQuery, setDebouncedQuery] = useState("");
   const searchInputId = useId();
-  const { data, isLoading, error } = useQuery<SearchUserByTermResponse>({
-    queryKey: queryKeys.search.byTerm(debouncedQuery),
-    queryFn: () => searchUserByTerm(debouncedQuery),
-    enabled: !!debouncedQuery,
-  });
+  const { data, isLoading, error, isPending } =
+    useQuery<SearchUserByTermResponse>({
+      queryKey: queryKeys.search.byTerm(debouncedQuery),
+      queryFn: () => searchUserByTerm(debouncedQuery),
+      enabled: !!debouncedQuery,
+    });
   useEffect(() => {
     const debounceSearch = setTimeout(() => {
       setDebouncedQuery(query);
@@ -54,20 +55,30 @@ export default function SearchInput() {
         </div>
       )}
       {error && <div>Something went wrong try again, later.</div>}
-      {/* {data && <pre>{JSON.stringify(data, null, 2)}</pre>} */}
-      {data?.items.map((user) => (
-        <CardInfo
-          key={user.id}
-          data={user}
-          renderCardInfo={(user) => (
-            <>
-              <img src={user.avatar_url} alt={user.login} />
-              <h2>{user.login}</h2>
-              <p>{user.type}</p>
-            </>
-          )}
-        />
-      ))}
+      {data?.total_count === 0 ? (
+        <div>
+          <p>No user is found!</p>
+        </div>
+      ) : (
+        data?.items.map((user) => (
+          <CardInfo
+            className={styles.card}
+            key={user.id}
+            data={user}
+            renderCardInfo={(user) => (
+              <>
+                <img
+                  src={user.avatar_url}
+                  alt={user.login}
+                  className={styles.avatar}
+                />
+                <h2>{user.login}</h2>
+                <p>{user.type}</p>
+              </>
+            )}
+          />
+        ))
+      )}
     </>
   );
 }
