@@ -103,6 +103,20 @@ pnpm dev
 
 4. Open your browser to `http://localhost:5173`
 
+5. GitHub CLI (authentication) - further auth needed for testing (GitHub REST API)
+
+Winget on windows : install first
+
+```
+winget install --id GitHub.cli
+```
+
+After installation
+
+```
+gh auth login
+```
+
 ## 🎨 Suggested Project Structure
 
 ```
@@ -164,6 +178,7 @@ Once completed:
 - [GitHub Users Search API](https://docs.github.com/en/rest/search)
 - [Understanding useEffect](https://react.dev/reference/react/useEffect)
 - [useRef Explained](https://react.dev/reference/react/useRef)
+- [GitHub CLI Installation](https://docs.github.com/en/rest/using-the-rest-api/getting-started-with-the-rest-api?apiVersion=2022-11-28#making-a-request)
 
 ## 🤝 Review Process
 

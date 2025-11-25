@@ -1,7 +1,5 @@
+import SearchInput from "./components/search-input/SearchInput";
+
 export default function App() {
-  return (
-    <div className="app">
-      <input type="text" />
-    </div>
-  );
+  return <SearchInput></SearchInput>;
 }

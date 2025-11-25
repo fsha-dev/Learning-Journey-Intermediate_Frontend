@@ -4,3 +4,8 @@ export const apiEndpoints = {
       `https://api.github.com/search/users?q=${searchTerm}`,
   },
 };
+export const queryKeys = {
+  search: {
+    byTerm: (searchTerm: string) => ["search", "byTerm", searchTerm],
+  },
+};
