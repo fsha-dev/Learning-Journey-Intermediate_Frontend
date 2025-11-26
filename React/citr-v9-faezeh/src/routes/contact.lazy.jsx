@@ -25,7 +25,7 @@ function RouteComponent() {
         <h3>Submited</h3>
       ) : (
         <form onSubmit={mutation.mutate}>
-          <input type="text" name="name" placeholder="name" />
+          <input type="text" name="name" placeholder="Name" />
           <input type="email" name="email" placeholder="Email" />
           <textarea name="message" placeholder="Message"></textarea>
           <button>Submit</button>
