@@ -11,12 +11,11 @@ export default function SearchInput() {
   const [loadingDebouncedSearch, setLoadingDebouncedSearch] = useState(false);
   const [debouncedQuery, setDebouncedQuery] = useState("");
   const searchInputId = useId();
-  const { data, isLoading, error, isPending } =
-    useQuery<SearchUserByTermResponse>({
-      queryKey: queryKeys.search.byTerm(debouncedQuery),
-      queryFn: () => searchUserByTerm(debouncedQuery),
-      enabled: !!debouncedQuery,
-    });
+  const { data, isLoading, error } = useQuery<SearchUserByTermResponse>({
+    queryKey: queryKeys.search.byTerm(debouncedQuery),
+    queryFn: () => searchUserByTerm(debouncedQuery),
+    enabled: !!debouncedQuery,
+  });
   useEffect(() => {
     const debounceSearch = setTimeout(() => {
       setDebouncedQuery(query);
