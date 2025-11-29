@@ -9,9 +9,7 @@ export const Route = createLazyFileRoute("/contact")({
 
 function RouteComponent() {
   const mutation = useMutation({
-    mutationFn: function (e) {
-      e.preventDefault();
-      const formData = new FormData(e.target);
+    mutationFn: function (formData) {
       return PostContact(
         formData.get("name"),
         formData.get("email"),

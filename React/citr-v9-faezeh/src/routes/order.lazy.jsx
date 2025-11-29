@@ -37,6 +37,11 @@ function Order() {
     fetchPizzasType();
   }, []);
 
+  function addToCart() {
+    setCart([...cart, { pizza: selectedPizza, size: pizzaSize }]);
+    console.log(pizzaSize, selectedPizza);
+  }
+
   async function checkout() {
     setLoading(true);
     await fetch("/api/order", {
@@ -53,13 +58,7 @@ function Order() {
   return (
     <div className="order">
       <h2>Create Order</h2>
-      <form
-        action={(e) => {
-          e.preventDefault();
-          setCart([...cart, { pizza: selectedPizza, size: pizzaSize }]);
-          console.log(pizzaSize, selectedPizza);
-        }}
-      >
+      <form action={addToCart}>
         <div>
           <div>
             <label htmlFor="pizza-type">Pizza Type</label>
