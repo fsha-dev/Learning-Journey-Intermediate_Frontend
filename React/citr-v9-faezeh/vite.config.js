@@ -16,7 +16,10 @@ export default defineConfig({
     },
   },
   plugins: [tanstackRouter(), react()],
-  test: {
-    environment: "happy-dom",
-  },
+  // test: {
+  //   environment: "happy-dom",
+  //   coverage: {
+  //     reporter: ["text", "json", "html"],
+  //   },
+  // },
 });
