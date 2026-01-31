@@ -37,6 +37,7 @@ promise3.then(console.log);
 
 //Topic: .catch
 let promise4 = new Promise(function (resolve, reject) {
+  setTimeout(() => resolve("done"), 10);
   setTimeout(() => reject("Error occured"), 100);
 });
 //First way to .then the error

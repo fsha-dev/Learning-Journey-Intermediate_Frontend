@@ -11,9 +11,9 @@ function loadScript(src) {
   });
 }
 
-let promise = loadScript("./script.js");
-
-promise.then(() => console.log("script loaded successfully"));
-promise.catch(() => console.log("error occured"));
-
-promise.then(loadScript("./script2.js"));
+loadScript("./script.js")
+  .then(() => {
+    console.log("script loaded successfully");
+    loadScript("./script2.js");
+  })
+  .catch(() => console.log("error occured"));
