@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <!-- <script src="./callbacks.js"></script> -->
+    <script src="assignment.js"></script>
+  </head>
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+    .main,
+    .circle {
+      position: fixed;
+      left: 50%;
+      top: 50%;
+      transform: translate(-50%);
+    }
+    .circle {
+      transition-property: width, height;
+      transition-duration: 2ms;
+      background-color: rgba(94, 39, 353, 0.3);
+      border-radius: 50%;
+      width: 200px;
+      height: 200px;
+    }
+    .main:hover {
+      color: rgba(200, 30, 933, 0.5);
+      cursor: cell;
+    }
+  </style>
+  <body>
+    <!-- <h1 class="main">Hello</h1> -->
+    <div class="circle"></div>
+  </body>
+</html>
