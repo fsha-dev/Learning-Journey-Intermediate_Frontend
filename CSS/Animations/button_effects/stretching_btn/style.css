@@ -1,0 +1,28 @@
+html,
+body {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+body {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 100vh;
+}
+a {
+  text-decoration: none;
+  font-family: "Times New Roman", Times, serif;
+  font-size: 4rem;
+  padding: 2rem 4rem;
+  color: #272727;
+  font-weight: 300;
+  border: 0.05rem solid #272727;
+  letter-spacing: -2px;
+  transition: all 0.5s;
+}
+a:hover {
+  letter-spacing: 10px;
+  font-weight: 900;
+  border: 0.5rem solid #272727;
+}

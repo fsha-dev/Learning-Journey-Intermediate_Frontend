@@ -1,0 +1,43 @@
+html,
+body {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+body {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 100vh;
+}
+a {
+  text-decoration: none;
+  font-family: sans-serif;
+  font-size: 4rem;
+  padding: 2rem 4rem;
+  color: #272727;
+  border: 0.5rem solid #272727;
+  position: relative;
+  transition: color 2s ease-out;
+  overflow: hidden;
+}
+a::before {
+  content: "";
+  background-color: #272727;
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: -1;
+  transition: width 2s;
+  transform: translateX(-100%);
+  transition: transform 2s;
+}
+a:hover::before {
+  transform: translateX(0);
+}
+a:hover {
+  color: #f5f5f5;
+}
+/* Question: if we use method width transition it is not so flexiable like we want to swipe from right to left not left to right, what is the solution? */

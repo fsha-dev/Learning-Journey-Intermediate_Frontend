@@ -1,0 +1,85 @@
+html,
+body {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-boxs;
+}
+body {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 100vh;
+  background-color: whitesmoke;
+  font-family: monospace;
+  padding: auto 3rem;
+}
+h1 {
+  font-size: 4.2rem;
+}
+#text_container {
+  width: 50rem;
+  height: auto;
+  line-height: 2rem;
+  /* white-space: nowrap; */
+  /* The text stays on one single line no matter how long it is.
+  If the container is smaller than the text:
+it overflows the container
+or gets cut off if overflow: hidden is used.
+ */
+  background-color: white;
+  border: 1px solid #272727;
+  border-radius: 5px;
+  display: flex;
+  align-items: center;
+  padding: 0.5rem 1rem;
+  font-weight: 600;
+  font-size: 1.4rem;
+  margin: 2rem auto;
+  overflow: hidden;
+}
+#timer {
+  font-size: 1.2rem;
+}
+#try_again {
+  background-color: #272727;
+  font-weight: 300;
+  letter-spacing: -1px;
+  font-size: 1.2rem;
+  padding: 0.5rem 0.7rem;
+  color: white;
+  border-radius: 10px;
+  transition: all 1s;
+  margin: 1rem auto;
+  display: none;
+}
+#try_again:hover {
+  filter: brightness(1.8);
+  font-weight: 600;
+  letter-spacing: 3px;
+  color: #272727;
+  background-color: white;
+}
+.char {
+  display: inline-block;
+  text-align: center;
+  min-width: 0.8rem;
+  min-height: 2rem;
+}
+.current_char {
+  position: relative;
+}
+.current_char::after {
+  position: absolute;
+  bottom: 1px;
+  content: "";
+  width: 100%;
+  height: 10%;
+  background-color: #272727;
+}
+.correct {
+  color: green;
+}
+.error {
+  color: red;
+}

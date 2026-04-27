@@ -1,0 +1,113 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="style.css" />
+    <title>Table Example</title>
+  </head>
+  <body>
+    <!-- Dark Mode Toggle -->
+    <div class="theme_toggle" id="theme_toggle">Dark Mode</div>
+    <!-- Container -->
+    <div class="container">
+      <h1>Most Active users</h1>
+      <!-- Loader -->
+      <div class="spinner" id="spinner" hidden>
+        <i class="gear"></i>
+      </div>
+      <!-- Table -->
+      <table id="data_table">
+        <thead>
+          <tr>
+            <th class="name_column box_icon_lable">
+              Name <i class="icon arrow_both" id="icon_0"></i>
+            </th>
+            <th class="email_column box_icon_lable">
+              Email<i class="icon arrow_both" id="icon_1"></i>
+            </th>
+            <th class="username_column box_icon_lable">
+              Username<i class="icon arrow_both" id="icon_2"></i>
+            </th>
+            <th class="country_column box_icon_lable">
+              country<i class="icon arrow_both" id="icon_3"></i>
+            </th>
+          </tr>
+        </thead>
+        <tbody id="table_body">
+          <tr>
+            <td data-label="Name">Name Here</td>
+            <td data-label="Email">Email Here</td>
+            <td data-label="Username">Username Here</td>
+            <td data-label="Country">Country Here</td>
+          </tr>
+          <tr>
+            <td data-label="Name">Name Here</td>
+            <td data-label="Email">Email Here</td>
+            <td data-label="Username">Username Here</td>
+            <td data-label="Country">Country Here</td>
+          </tr>
+          <tr>
+            <td data-label="Name">Name Here</td>
+            <td data-label="Email">Email Here</td>
+            <td data-label="Username">Username Here</td>
+            <td data-label="Country">Country Here</td>
+          </tr>
+          <tr>
+            <td data-label="Name">Name Here</td>
+            <td data-label="Email">Email Here</td>
+            <td data-label="Username">Username Here</td>
+            <td data-label="Country">Country Here</td>
+          </tr>
+          <tr>
+            <td data-label="Name">Name Here</td>
+            <td data-label="Email">Email Here</td>
+            <td data-label="Username">Username Here</td>
+            <td data-label="Country">Country Here</td>
+          </tr>
+          <tr>
+            <td data-label="Name">Name Here</td>
+            <td data-label="Email">Email Here</td>
+            <td data-label="Username">Username Here</td>
+            <td data-label="Country">Country Here</td>
+          </tr>
+          <tr>
+            <td data-label="Name">Name Here</td>
+            <td data-label="Email">Email Here</td>
+            <td data-label="Username">Username Here</td>
+            <td data-label="Country">Country Here</td>
+          </tr>
+          <tr>
+            <td data-label="Name">Name Here</td>
+            <td data-label="Email">Email Here</td>
+            <td data-label="Username">Username Here</td>
+            <td data-label="Country">Country Here</td>
+          </tr>
+          <tr>
+            <td data-label="Name">Name Here</td>
+            <td data-label="Email">Email Here</td>
+            <td data-label="Username">Username Here</td>
+            <td data-label="Country">Country Here</td>
+          </tr>
+          <tr>
+            <td data-label="Name">Name Here</td>
+            <td data-label="Email">Email Here</td>
+            <td data-label="Username">Username Here</td>
+            <td data-label="Country">Country Here</td>
+          </tr>
+        </tbody>
+      </table>
+      <!-- Pagination -->
+      <div class="pagination">
+        <button type="button" id="prev_btn" title="Previous Page">
+          <i class="arrow_left"></i>
+        </button>
+        <span id="page_number">1</span>
+        <button type="button" id="next_btn" title="Next Page">
+          <i class="arrow_right"></i>
+        </button>
+      </div>
+    </div>
+    <script src="script.js"></script>
+  </body>
+</html>
