@@ -31,7 +31,7 @@ class Circle {
     return this._color;
   }
   set color(newColor) {
-    if (allowedColors.has(newColor)) {
+    if (Circle.allowedColors.has(newColor)) {
       this._color = newColor;
     } else {
       throw new Error("That color is not allowed");
@@ -44,3 +44,36 @@ console.log(c._radius, c.diameter);
 console.log(c.color);
 c.color = "green";
 console.log(c.color);
+// c.color = "perrr";
+
+//Practice Time
+console.log("🎽 Practice Time: Getters, Setters");
+
+class User {
+  constructor(firstName, lastName) {
+    this.firstName = firstName;
+    this.lastName = lastName;
+  }
+  set fullName(flname) {
+    if (flname.includes(" ")) {
+      const [part1, ...rest] = flname.split(" ");
+      this.firstName = part1;
+      this.lastName = rest.join(" ");
+    } else {
+      this.firstName = flname;
+      this.lastName = "";
+    }
+    return this.fullName;
+  }
+  get fullName() {
+    return `${this.firstName} ${this.lastName}`;
+  }
+}
+
+const myUser = new User("fawze", "chenani");
+console.log(myUser.fullName);
+myUser.fullName = "fariman Jalabi Panahi";
+console.log(myUser.fullName);
+
+//Public Feild
+console.log("🏫 Public feild");
