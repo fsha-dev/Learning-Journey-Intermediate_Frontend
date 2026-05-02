@@ -76,4 +76,71 @@ myUser.fullName = "fariman Jalabi Panahi";
 console.log(myUser.fullName);
 
 //Public Feild
-console.log("🏫 Public feild");
+console.log("🏫 Public class feild, Private class feild");
+
+class Cat {
+  static numOfCats = 0; // Static: below for class
+  numLegs = 4; //Public Feild, for instances, defuault values, for more readablity we do not write them in constructors!?
+  hasTail = true; //default values
+  name; //declare in constructor
+  constructor(name) {
+    this.name = name;
+    Cat.numOfCats += 1;
+  } //Use for initialize value
+  amputate() {
+    this.numLegs -= 1;
+  }
+}
+
+const blue = new Cat("blue");
+console.log(blue);
+
+//Private Feild
+console.log("🏫 Private class feild");
+
+class CirclePr {
+  #radius;
+  constructor(radius) {
+    this.#radius = radius;
+  }
+  getRadius() {
+    return this.#radius; // now we have a mechanism to see the private feild
+  }
+}
+
+const myCircle = new CirclePr(4);
+// myCircle.#radius = -5;// can not access private feild from outside of the class
+// console.log(myCircle.#radius);
+
+//Private Method
+console.log("🏫 Private Method");
+
+class Myclass {
+  #privateMethod() {
+    console.log("PRIVATE METHOD CALLED!!!");
+  }
+  publicMethod() {
+    this.#privateMethod();
+  }
+}
+
+const myClass = new Myclass();
+myClass.publicMethod();
+// myClass.#privateMethod();
+
+//Static Initialization Block
+console.log("🏫 Static Initialization Block");
+
+// class DatabaseConnection {
+//   static connection;
+//   static {
+//     console.log("CLASS IS LOADED, just run once");
+//     if (process.env.NODE_ENV === "production") {
+//       this.connection = this.loadProductionConnection();
+//     } else {
+//       this.connection = this.loadDevelopmentConnection();
+//     }
+//   }
+//   static loadProductionConnection() {}
+//   static loadDevelopmentConnection() {}
+// }
