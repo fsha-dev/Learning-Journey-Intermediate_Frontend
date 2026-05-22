@@ -213,3 +213,58 @@ function choice(arr) {
 }
 
 console.log(Cat2.registerStray().meow());
+
+// Getter and Setters
+console.log("🏫 Getter and Setter");
+//Getter = specail method that makes a property readable
+//Setter = specail method that makes a property writable
+
+class Rectangle {
+  #count = 0;
+  constructor(width, height) {
+    this.width = width;
+    this.height = height;
+  }
+  set width(newWidth) {
+    if (newWidth > 0) {
+      this._width = newWidth;
+    } else {
+      console.log("must be a positive number");
+    }
+  }
+  set height(newHeight) {
+    if (newHeight > 0) {
+      this._height = newHeight;
+    } else {
+      console.log("must be a positive number");
+    }
+  }
+  increaseCount() {
+    this.#count += 1;
+  }
+  get width() {
+    return this._width;
+  }
+  get height() {
+    return this._height;
+  }
+  get count() {
+    return this.#count;
+  }
+}
+const rectangle = new Rectangle(-1000, "pizza");
+// rectangle.width = 7;
+// rectangle.height = 8;
+console.log(rectangle.width);
+console.log(rectangle.height);
+console.log("rectangle 1 count: ", rectangle.count);
+rectangle.increaseCount();
+// rectangle.#count = 5; // 🚨Error
+console.log("rectangle 1 count: ", rectangle.count);
+
+const rectangle2 = new Rectangle(3, 4);
+console.log("rectangle 2 count: ", rectangle2.count);
+// More Resource
+console.log(
+  `🌐🌐More Resources: Immutable Class Pattern,{(https://coreui.io/answers/how-to-create-immutable-objects-in-javascript/)}`,
+);
