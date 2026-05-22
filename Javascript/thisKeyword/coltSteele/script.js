@@ -45,6 +45,7 @@ const country = {
   population: "234,23434,32432",
   gpdRate: "344545",
   gpd: function () {
+    console.log("This in country is ", this);
     console.log(this.name, " produce ", this.gpdRate, " in they country");
   },
 };
@@ -63,3 +64,134 @@ class Dog {
 const myDog = new Dog("poopy", 5);
 myDog.name = "goody";
 myDog.whatIsName();
+
+// This and Classes
+console.log("🏫 This and Classes");
+
+class Flower {
+  constructor(name) {
+    this.name = name;
+  }
+  static getRandomFlower() {
+    console.log("This is", this);
+  }
+  smell(smellOf = "nothing") {
+    console.log("This is", this);
+    console.log(
+      `This ${this.name} has a great smell, it's smell like ${smellOf}`,
+    );
+  }
+}
+const myFlower = new Flower();
+// myFlower.getRandomFlower();// 🚨Error
+Flower.getRandomFlower();
+
+//see the difference between like 48 and 79 in code below:
+const func = myFlower.smell;
+// func();// 🚨Error
+console.log(console.name);
+// console.log(undefined.name);// 🚨Error
+
+// OOP and this
+console.log(
+  "When you call a function on nothing, but the function comes from inside a class, the value of this will be undefined, not the window",
+);
+
+// The call Method
+console.log("🏫 The call Method");
+console.log(
+  "🍺 Sometimes, you'll need to say 'call this function on this object'",
+);
+const fLowerName = {
+  name: "Lily",
+  rigon: "Swiss",
+};
+func.call(fLowerName); // Call func on FLowrName object
+const fLowerName2 = {
+  name: "Shabdar",
+  rigon: "Parks",
+};
+func.call(fLowerName2);
+// you can pass argument too!
+func.call(fLowerName2, "cake");
+
+//Hint
+const conan = {
+  name: "Conan",
+  city: "LA",
+  sing: function () {
+    console.log("this is ", this);
+    console.log(`${this.name} sings a song`);
+  },
+  greet(greeting) {
+    console.log(`${greeting}, Mr/Ms ${this.name}`);
+  },
+};
+
+const lisa = {
+  name: "Lisa",
+  city: "NYC",
+};
+
+const sing = conan.sing;
+sing.call(lisa);
+
+class PersonInfo {
+  constructor(name, city) {
+    this.name = name;
+    this.city = city;
+  }
+
+  static sing() {
+    console.log("this is ", this);
+    console.log(`${this.name} sings a song`);
+  }
+  greet(greeting) {
+    console.log(`${greeting}, Mr/Ms ${this.name}`);
+  }
+}
+
+const singFunc = PersonInfo.sing;
+singFunc.call(conan);
+singFunc.call({ name: "Matin" });
+PersonInfo.sing.call({ name: "Fafa" });
+
+// The Apply Method
+console.log("🏫 The Apply Method");
+const george = {
+  name: "George",
+  city: "Mossco",
+};
+// conan.greet.apply(george, "Holaaaaaaaaaaaaa");// 🚨Error
+// Apply accepts an array
+conan.greet.apply(george, ["Olayyyy"]);
+// function.apply(this refered to?, arguments) -> apply this function with these refered value and arguments
+console.log(
+  "🤔👩‍🎓function.apply(this refered to?, arguments) -> apply this function with these refered value and arguments",
+);
+
+// The Bind Method
+console.log("🏫 The Bind Method");
+// You can call .call 10 times like this below
+conan.sing.call(lisa);
+conan.sing.call(lisa);
+conan.sing.call(lisa);
+conan.sing.call(lisa);
+conan.sing.call(lisa);
+conan.sing.call(lisa);
+conan.sing.call(lisa);
+conan.sing.call(lisa);
+conan.sing.call(lisa);
+conan.sing.call(lisa);
+
+//Or instead use bind
+const singLisa = conan.sing.bind(lisa); // make a brand new function which bounds to the contex of lisa
+console.log("1️⃣");
+singLisa();
+console.log("2️⃣");
+singLisa();
+console.log("3️⃣");
+singLisa();
+
+// Binding Arguments
+console.log("🏫 Binding Arguments");
