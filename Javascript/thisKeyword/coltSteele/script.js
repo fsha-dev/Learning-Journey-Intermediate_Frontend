@@ -195,3 +195,44 @@ singLisa();
 
 // Binding Arguments
 console.log("🏫 Binding Arguments");
+function applySalesTax(taxRate, price) {
+  const total = price + price * taxRate;
+  console.log(
+    `The tax rate is ${taxRate} and total is ${total} with price ${price}`,
+  );
+  return total;
+}
+
+const applyCASalesTax = applySalesTax.bind(null, 0.15);
+const applyMTSalesTax = applySalesTax.bind(null, 0.2);
+console.log(applyCASalesTax(1000), applyMTSalesTax(1000));
+
+// Binding With Event Listeners
+console.log("🏫 Binding With Event Listeners");
+// Go to app.js & index.html file
+console.log("Go to app.js & index.html file");
+
+// Bind With Timers
+console.log("🏫 Bind With Timers");
+class Counter {
+  constructor(startingNum, increamnetAmount) {
+    this.startingNum = startingNum;
+    this.increamnetAmount = increamnetAmount;
+    this.currentNum = 0;
+  }
+  start() {
+    this.currentNum = this.startingNum;
+    return this.startingNum;
+  }
+  increamnet() {
+    if (this.currentNum === 0) {
+      return this.start();
+    } else {
+      return (this.currentNum += this.increamnetAmount);
+    }
+  }
+}
+const counter1 = new Counter(2, 100);
+console.log(counter1.increamnet());
+console.log(counter1.increamnet());
+console.log(counter1.increamnet());
