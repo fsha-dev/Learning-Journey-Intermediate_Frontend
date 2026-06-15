@@ -215,24 +215,20 @@ console.log("Go to app.js & index.html file");
 // Bind With Timers
 console.log("🏫 Bind With Timers");
 class Counter {
-  constructor(startingNum, increamnetAmount) {
+  constructor(startingNum = 0, increamnetAmount = 1) {
     this.startingNum = startingNum;
     this.increamnetAmount = increamnetAmount;
     this.currentNum = 0;
   }
   start() {
-    this.currentNum = this.startingNum;
-    return this.startingNum;
-  }
-  increamnet() {
-    if (this.currentNum === 0) {
-      return this.start();
-    } else {
-      return (this.currentNum += this.increamnetAmount);
-    }
+    setInterval(function () {
+      console.log(this.startingNum);
+      this.startingNum += this.increamnetAmount;
+    }, 1000);
   }
 }
-const counter1 = new Counter(2, 100);
-console.log(counter1.increamnet());
-console.log(counter1.increamnet());
-console.log(counter1.increamnet());
+const counter1 = new Counter();
+console.log(counter1.start.toString());
+console.log(counter1.currentNum, counter1.increamnetAmount);
+counter1.start.bind(counter1, counter1.currentNum, counter1.increamnetAmount);
+//counter1.start();
