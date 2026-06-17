@@ -1,0 +1,7 @@
+{
+  "compilerOptions": {
+    "target": "es2025",
+    "types": ["cypress"]
+  },
+  "include": ["cypress"]
+}
