@@ -9,29 +9,29 @@ describe("global layout", () => {
   });
   it("should display the home item in menu", () => {
     cy.visit("https://automationexercise.com/");
-    cy.get(' .shop-menu ul li a[href="/"]').should("be.visible");
+    cy.get('.shop-menu ul li a[href="/"]').should("be.visible");
     cy.get('.shop-menu ul li a[href="/"]').should("contain.text", "Home");
   });
   it("should display the products item in menu", () => {
     cy.visit("https://automationexercise.com/");
-    cy.get('.shop-menu ul li a[href="/products]').should("be.visible");
-    cy.get('.shop-menu ul li a[href="/products]').should(
+    cy.get('.shop-menu ul li a[href="/products"]').should("be.visible");
+    cy.get('.shop-menu ul li a[href="/products"]').should(
       "contain.text",
       "Products",
     );
   });
   it("should display the cart item in menu", () => {
     cy.visit("https://automationexercise.com/");
-    cy.get('.shop-menu ul li a[href="/view_cart]').should("be.visible");
-    cy.get('.shop-menu ul li a[href="/view_cart]').should(
+    cy.get('.shop-menu ul li a[href="/view_cart"]').should("be.visible");
+    cy.get('.shop-menu ul li a[href="/view_cart"]').should(
       "contain.text",
       "Cart",
     );
   });
   it("should display the contact item in menu", () => {
     cy.visit("https://automationexercise.com/");
-    cy.get('.shop-menu ul li a[href="/contact_us]').should("be.visible");
-    cy.get('.shop-menu ul li a[href="/contact_us]').should(
+    cy.get('.shop-menu ul li a[href=""/contact_us"]').should("be.visible");
+    cy.get('.shop-menu ul li a[href=""/contact_us"]').should(
       "contain.text",
       "Contact us",
     );
