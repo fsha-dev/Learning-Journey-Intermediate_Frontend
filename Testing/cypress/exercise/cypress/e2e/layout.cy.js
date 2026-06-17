@@ -41,9 +41,9 @@ describe("global layout", () => {
     cy.get(".features_items").should("be.visible");
     cy.get(".features_items h2").should("contain.text", "Features Items");
   });
-  it("should display the s.shop-menu ul lider in the main page", () => {
+  it("should slider in the main page", () => {
     cy.visit("https://automationexercise.com/");
-    cy.get("#s.shop-menu ul lider").should("be.visible");
+    cy.get("#slider").should("be.visible");
   });
   it("should display the footer", () => {
     cy.visit("https://automationexercise.com/");
