@@ -3,7 +3,7 @@ describe("page navigation", () => {
     cy.visit("/");
   });
   it("should navigate between pages", () => {
-    cy.get('[data-cy="header-about-link"]').click();
+    cy.getByDataCy("header-about-link").click();
     cy.location("pathname").should("eq", "/about"); //get location which page we are , eq = equal
     cy.go("back"); // back btn browser
     cy.location("pathname").should("eq", "/"); //-> home page
