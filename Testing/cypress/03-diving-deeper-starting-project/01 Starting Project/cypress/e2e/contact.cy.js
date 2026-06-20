@@ -38,4 +38,36 @@ describe("page navigation", () => {
     cy.get("@submitBtn").should("have.attr", "disabled");
     cy.get("@submitBtn").contains("Sending...");
   });
+  it.only("should validate the form input", () => {
+    cy.visit("http://localhost:5173/about");
+    cy.get('[data-cy="contact-btn-submit"]')
+      .as("submitBtn")
+      .click()
+      .then((el) => {
+        expect(el).to.not.have.attr("disabled");
+        expect(el).to.not.contain.text("Sending...");
+      });
+    cy.get("@submitBtn").contains("Send Message");
+    cy.get('[data-cy="contact-input-message"]')
+      .as("inputMessage")
+      .focus()
+      .blur();
+    cy.get("@inputMessage")
+      .parent()
+      .then((el) => {
+        expect(el.attr("class")).to.contains("invalid");
+      });
+    cy.get('[data-cy="contact-input-name"]').as("inputName").focus().blur();
+    cy.get("@inputName")
+      .parent()
+      .then((el) => {
+        expect(el.attr("class")).to.contains("invalid");
+      });
+    cy.get('[data-cy="contact-input-email"]').as("inputEmail").focus().blur();
+    cy.get("@inputEmail")
+      .parent()
+      .then((el) => {
+        expect(el.attr("class")).to.contains("invalid");
+      });
+  });
 });
