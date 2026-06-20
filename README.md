@@ -1,1 +1,1 @@
-# Learning-Journey-Intermediate_Frontend
+# Learning-Journey-Intermediate
