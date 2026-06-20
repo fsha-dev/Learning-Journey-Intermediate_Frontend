@@ -1,5 +1,5 @@
 describe("page navigation", () => {
-  it("should submit the form", () => {
+  it.only("should submit the form", () => {
     cy.visit("http://localhost:5173/");
     cy.get('[data-cy="header-about-link"]').click();
     cy.get('[data-cy="contact-input-message"]').type(
@@ -14,11 +14,15 @@ describe("page navigation", () => {
     //  cy.get('[data-cy="contact-btn-submit"]')
     //    .contains("Send Message")
     //    .and("not.have.attr", "disabled"); // chaining,should = and
+    cy.screenshot();
     // Alias
     cy.get('[data-cy="contact-btn-submit"]').as("submitBtn");
     cy.get("@submitBtn").click();
+    cy.screenshot();
     cy.get("@submitBtn").should("have.attr", "disabled");
+    cy.screenshot();
     cy.get("@submitBtn").contains("Sending...");
+    cy.screenshot();
   });
   it("should submit the form by press enter button", () => {
     cy.visit("http://localhost:5173/");
@@ -38,7 +42,7 @@ describe("page navigation", () => {
     cy.get("@submitBtn").should("have.attr", "disabled");
     cy.get("@submitBtn").contains("Sending...");
   });
-  it.only("should validate the form input", () => {
+  it("should validate the form input", () => {
     cy.visit("http://localhost:5173/about");
     cy.get('[data-cy="contact-btn-submit"]')
       .as("submitBtn")
