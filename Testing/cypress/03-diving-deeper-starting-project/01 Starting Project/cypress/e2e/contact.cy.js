@@ -1,7 +1,8 @@
-describe("page navigation", () => {
+describe("page navigation", { defaultCommandTimeout: 5000 }, () => {
+  beforeEach(() => {
+    cy.visit("/about");
+  });
   it.only("should submit the form", () => {
-    cy.visit("http://localhost:5173/");
-    cy.get('[data-cy="header-about-link"]').click();
     cy.get('[data-cy="contact-input-message"]').type(
       "hi thanks for your services",
     );
@@ -25,8 +26,6 @@ describe("page navigation", () => {
     cy.screenshot();
   });
   it("should submit the form by press enter button", () => {
-    cy.visit("http://localhost:5173/");
-    cy.get('[data-cy="header-about-link"]').click();
     cy.get('[data-cy="contact-input-message"]').type(
       "hi thanks for your services",
     );
@@ -43,11 +42,10 @@ describe("page navigation", () => {
     cy.get("@submitBtn").contains("Sending...");
   });
   it("should validate the form input", () => {
-    cy.visit("http://localhost:5173/about");
     cy.get('[data-cy="contact-btn-submit"]')
       .as("submitBtn")
       .click()
-      .then((el) => {
+      .should((el) => {
         expect(el).to.not.have.attr("disabled");
         expect(el).to.not.contain.text("Sending...");
       });
