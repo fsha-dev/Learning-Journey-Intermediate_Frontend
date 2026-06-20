@@ -54,20 +54,18 @@ describe("page navigation", () => {
       .blur();
     cy.get("@inputMessage")
       .parent()
-      .then((el) => {
-        expect(el.attr("class")).to.contains("invalid");
-      });
+      .should("have.attr", "class")
+      .and("match", /invalid/);
+
     cy.get('[data-cy="contact-input-name"]').as("inputName").focus().blur();
     cy.get("@inputName")
       .parent()
-      .then((el) => {
-        expect(el.attr("class")).to.contains("invalid");
-      });
+      .should("have.attr", "class")
+      .and("match", /invalid/);
     cy.get('[data-cy="contact-input-email"]').as("inputEmail").focus().blur();
     cy.get("@inputEmail")
       .parent()
-      .then((el) => {
-        expect(el.attr("class")).to.contains("invalid");
-      });
+      .should("have.attr", "class")
+      .and("match", /invalid/);
   });
 });
