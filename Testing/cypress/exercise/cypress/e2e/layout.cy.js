@@ -3,35 +3,30 @@ describe("global layout", () => {
     cy.visit("https://automationexercise.com/");
     cy.get('img[src *="logo"]').should("be.visible");
   });
+
   it("should display the menu", () => {
     cy.visit("https://automationexercise.com/");
     cy.get(".shop-menu").should("be.visible");
   });
   it("should display the home item in menu", () => {
     cy.visit("https://automationexercise.com/");
-    cy.get('.shop-menu ul li a[href="/"]').should("be.visible");
-    cy.get('.shop-menu ul li a[href="/"]').should("contain.text", "Home");
+    cy.get('.shop-menu a[href="/"]').should("be.visible");
+    cy.get('.shop-menu a[href="/"]').should("contain.text", "Home");
   });
-  it("should display the products item in menu", () => {
+  it.only("should display the products item in menu", () => {
     cy.visit("https://automationexercise.com/");
-    cy.get('.shop-menu ul li a[href="/products"]').should("be.visible");
-    cy.get('.shop-menu ul li a[href="/products"]').should(
-      "contain.text",
-      "Products",
-    );
+    cy.get('.shop-menu a[href="/products"]').should("be.visible");
+    cy.get('.shop-menu a[href="/products"]').should("contain.text", "Products");
   });
   it("should display the cart item in menu", () => {
     cy.visit("https://automationexercise.com/");
-    cy.get('.shop-menu ul li a[href="/view_cart"]').should("be.visible");
-    cy.get('.shop-menu ul li a[href="/view_cart"]').should(
-      "contain.text",
-      "Cart",
-    );
+    cy.get('.shop-menu a[href="/view_cart"]').should("be.visible");
+    cy.get('.shop-menu a[href="/view_cart"]').should("contain.text", "Cart");
   });
   it("should display the contact item in menu", () => {
     cy.visit("https://automationexercise.com/");
-    cy.get('.shop-menu ul li a[href=""/contact_us"]').should("be.visible");
-    cy.get('.shop-menu ul li a[href=""/contact_us"]').should(
+    cy.get('.shop-menu a[href=""/contact_us"]').should("be.visible");
+    cy.get('.shop-menu a[href=""/contact_us"]').should(
       "contain.text",
       "Contact us",
     );
