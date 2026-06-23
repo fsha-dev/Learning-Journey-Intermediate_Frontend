@@ -22,31 +22,31 @@ describe("Form Feilds", () => {
       .should("have.value", "Coffee")
       .check()
       .should("be.checked");
+    cy.log("انتخاب گزینه Coffee را لغو کنید");
+    // Reason : اول انتخاب میکنم گزینه ها رو بعد در آخر چک میکنیم که هر دو چک شده باشند
+    // اتریبیوت اسم رو هم انتخاب میکنیم چون مطمئن شویم که دیتایی که داره میره هر دو برای نوشیدنی مورد علاقه هستند
+    cy.get('[data-cy="drink3"][name="fav_drink"]').should("not.be.checked");
+    cy.log("دو گزینه Water و Coffee را انتخاب کنید");
+    cy.get('[data-cy="drink3"][name="fav_drink"]')
+      .should("have.value", "Coffee")
+      .check();
+    cy.get('[data-cy="drink1"][name="fav_drink"]')
+      .should("have.value", "Water")
+      .check();
+    cy.get('[data-cy="drink3"][name="fav_drink"]').should("be.checked");
+    cy.get('[data-cy="drink1"][name="fav_drink"]"]').should("be.checked");
+    cy.log("در بخش «رنگ مورد علاقه»، گزینه Yellow را انتخاب کنید");
+    cy.get('[data-cy="color3"][name="fav_color"]')
+      .should("have.value", "Yellow")
+      .check()
+      .should("be.checked");
+    cy.log("از لیست کشویی «Do you like automation?» گزینه Yes را انتخاب کنید");
+    // Reason : should در اینجا چک میکند که دیتای نمایش داده شده برای کاربر هم بله باشد
+    cy.get('[data-cy="automation"]')
+      .select('[data-cy="automation-yes"')
+      .should("have.vale", "Yes")
+      .should("be.selected");
+    //Reason : برای اینکه مطمئن شویم دیتایی که به سمت بک اند میرود با فرانت یکی است
+    cy.get('[data-cy="automation"]').should("have.value", "yes");
   });
-  cy.log("انتخاب گزینه Coffee را لغو کنید");
-  // Reason : اول انتخاب میکنم گزینه ها رو بعد در آخر چک میکنیم که هر دو چک شده باشند
-  // اتریبیوت اسم رو هم انتخاب میکنیم چون مطمئن شویم که دیتایی که داره میره هر دو برای نوشیدنی مورد علاقه هستند
-  cy.get('[data-cy="drink3"][name="fav_drink"]').should("not.be.checked");
-  cy.log("دو گزینه Water و Coffee را انتخاب کنید");
-  cy.get('[data-cy="drink3"][name="fav_drink"]')
-    .should("have.value", "Coffee")
-    .check();
-  cy.get('[data-cy="drink1"][name="fav_drink"]')
-    .should("have.value", "Water")
-    .check();
-  cy.get('[data-cy="drink3"][name="fav_drink"]').should("be.checked");
-  cy.get('[data-cy="drink1"][name="fav_drink"]"]').should("be.checked");
-  cy.log("در بخش «رنگ مورد علاقه»، گزینه Yellow را انتخاب کنید");
-  cy.get('[data-cy="color3"][name="fav_color"]')
-    .should("have.value", "Yellow")
-    .check()
-    .should("be.checked");
-  cy.log("از لیست کشویی «Do you like automation?» گزینه Yes را انتخاب کنید");
-  // Reason : should در اینجا چک میکند که دیتای نمایش داده شده برای کاربر هم بله باشد
-  cy.get('[data-cy="automation"]')
-    .select('[data-cy="automation-yes"')
-    .should("have.vale", "Yes")
-    .should("be.selected");
-  //Reason : برای اینکه مطمئن شویم دیتایی که به سمت بک اند میرود با فرانت یکی است
-  cy.get('[data-cy="automation"]').should("have.value", "yes");
 });
