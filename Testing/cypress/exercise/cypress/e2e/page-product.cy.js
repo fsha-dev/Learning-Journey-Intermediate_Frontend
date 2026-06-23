@@ -1,6 +1,6 @@
 describe("check products page", () => {
   before(() => {
-    cy.visit("/products");
+    cy.visit("https://automationexercise.com/products");
   });
   it("should", () => {
     // Step 1 :بررسی ورود به صفحه محصولات
