@@ -4,12 +4,13 @@ describe("Form Feilds", () => {
     cy.visit("https://practice-automation.com/form-fields");
     cy.log("فیلد Name را پیدا کنید و مقدار Cypress User را وارد کنید");
     // Reason : اتریبیوت تست آیدی پایدارترین و یونیک ترین
-    cy.get('[data-cy="input-name]')
+    cy.get('[data-cy="name-input"]')
       .type("Cypress User")
       .should("have.value", "Cypress User");
     cy.log("مقدار فیلد Name را پاک کنید");
-    cy.get('[data-cy="input-name]').clear().should("not.have.value");
-    cy.get('[data-cy="input-name]')
+    cy.get('[data-cy="name-input"]').clear().should("not.have.value");
+    cy.log("مقدار QA Intern را مجدداً در فیلد Name وارد کنید");
+    cy.get('[data-cy="name-input"]')
       .type("QA Intern")
       .should("have.value", "QA Intern");
     cy.log("فیلد Password را با یک مقدار دلخواه تکمیل کنید");
@@ -25,7 +26,9 @@ describe("Form Feilds", () => {
     cy.log("انتخاب گزینه Coffee را لغو کنید");
     // Reason : اول انتخاب میکنم گزینه ها رو بعد در آخر چک میکنیم که هر دو چک شده باشند
     // اتریبیوت اسم رو هم انتخاب میکنیم چون مطمئن شویم که دیتایی که داره میره هر دو برای نوشیدنی مورد علاقه هستند
-    cy.get('[data-cy="drink3"][name="fav_drink"]').should("not.be.checked");
+    cy.get('[data-cy="drink3"][name="fav_drink"]')
+      .uncheck()
+      .should("not.be.checked");
     cy.log("دو گزینه Water و Coffee را انتخاب کنید");
     cy.get('[data-cy="drink3"][name="fav_drink"]')
       .should("have.value", "Coffee")
@@ -34,19 +37,17 @@ describe("Form Feilds", () => {
       .should("have.value", "Water")
       .check();
     cy.get('[data-cy="drink3"][name="fav_drink"]').should("be.checked");
-    cy.get('[data-cy="drink1"][name="fav_drink"]"]').should("be.checked");
+    cy.get('[data-cy="drink1"][name="fav_drink"]').should("be.checked");
     cy.log("در بخش «رنگ مورد علاقه»، گزینه Yellow را انتخاب کنید");
     cy.get('[data-cy="color3"][name="fav_color"]')
       .should("have.value", "Yellow")
       .check()
       .should("be.checked");
     cy.log("از لیست کشویی «Do you like automation?» گزینه Yes را انتخاب کنید");
-    // Reason : should در اینجا چک میکند که دیتای نمایش داده شده برای کاربر هم بله باشد
-    cy.get('[data-cy="automation"]')
-      .select('[data-cy="automation-yes"')
-      .should("have.vale", "Yes")
-      .should("be.selected");
     //Reason : برای اینکه مطمئن شویم دیتایی که به سمت بک اند میرود با فرانت یکی است
-    cy.get('[data-cy="automation"]').should("have.value", "yes");
+    cy.get('[data-cy="automation"]')
+      .select("Yes")
+      .should("have.value", "yes")
+      .should("be.selected");
   });
 });
