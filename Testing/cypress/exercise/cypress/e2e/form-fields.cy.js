@@ -1,4 +1,4 @@
-describe("Form Feilds", () => {
+describe("Form Fields", () => {
   it("should submit the form successfully", () => {
     cy.log("وارد صفحه شوید");
     cy.visit("https://practice-automation.com/form-fields");
