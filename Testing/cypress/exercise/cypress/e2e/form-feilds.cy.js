@@ -20,24 +20,22 @@ describe("Form Feilds", () => {
     // Reason : برای اینکه مطمئن شویم درینک 3 همان فیلد قهوه است اول بررسی میکنیم با اسرشن سپس انتخاب می‌شود
     // اتریبوت اسم رو هم انتخاب میکنیم تا مطمئن شویم این نوشیدنی برای بخش نوشیدنی موردعلاقه است
     cy.get('[data-cy="drink3"][name="fav_drink"]')
+      .as("fav-drink-coffee")
       .should("have.value", "Coffee")
       .check()
       .should("be.checked");
     cy.log("انتخاب گزینه Coffee را لغو کنید");
     // Reason : اول انتخاب میکنم گزینه ها رو بعد در آخر چک میکنیم که هر دو چک شده باشند
     // اتریبیوت اسم رو هم انتخاب میکنیم چون مطمئن شویم که دیتایی که داره میره هر دو برای نوشیدنی مورد علاقه هستند
-    cy.get('[data-cy="drink3"][name="fav_drink"]')
-      .uncheck()
-      .should("not.be.checked");
+    cy.get("@fav-drink-coffee").uncheck().should("not.be.checked");
     cy.log("دو گزینه Water و Coffee را انتخاب کنید");
-    cy.get('[data-cy="drink3"][name="fav_drink"]')
-      .should("have.value", "Coffee")
-      .check();
+    cy.get("@fav-drink-coffee").should("have.value", "Coffee").check();
     cy.get('[data-cy="drink1"][name="fav_drink"]')
+      .as("fav-drink-water")
       .should("have.value", "Water")
       .check();
-    cy.get('[data-cy="drink3"][name="fav_drink"]').should("be.checked");
-    cy.get('[data-cy="drink1"][name="fav_drink"]').should("be.checked");
+    cy.get("@fav-drink-coffee").should("be.checked");
+    cy.get("@fav-drink-water").should("be.checked");
     cy.log("در بخش «رنگ مورد علاقه»، گزینه Yellow را انتخاب کنید");
     cy.get('[data-cy="color3"][name="fav_color"]')
       .should("have.value", "Yellow")
@@ -47,14 +45,17 @@ describe("Form Feilds", () => {
     //Reason : برای اینکه مطمئن شویم دیتایی که به سمت بک اند میرود با فرانت یکی است
     cy.get('[data-cy="automation"]').select("Yes").should("have.value", "yes");
     cy.log("فیلد Email را با یک ایمیل معتبر تکمیل کنید");
+    //Reason : پایدارترین سلکتور
     cy.get('[data-cy="email"]')
       .type("faeze.chenani@gmail.com")
       .should("have.value", "faeze.chenani@gmail.com");
     cy.log("در فیلد Message یک متن دلخواه وارد کنید");
+    //Reason : پایدارترین سلکتور
     cy.get('[data-cy="message"]')
       .type("I am a qa intern")
       .should("have.value", "I am a qa intern");
     cy.log("روی دکمه Submit کلیک کنید");
+    //Reason : پایدارترین سلکتور
     cy.get('[data-cy="submit-btn"]').click();
     cy.on("window:alert", (alertText) => {
       expect(alertText).to.eq("Message received!");
