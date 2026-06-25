@@ -5,6 +5,7 @@ module.exports = defineConfig({
   allowCypressEnv: false,
 
   e2e: {
+    proxy: false,
     setupNodeEvents(on, config) {
       // implement node event listeners here
     },

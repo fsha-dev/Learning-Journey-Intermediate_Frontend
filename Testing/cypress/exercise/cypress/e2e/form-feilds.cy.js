@@ -45,9 +45,19 @@ describe("Form Feilds", () => {
       .should("be.checked");
     cy.log("از لیست کشویی «Do you like automation?» گزینه Yes را انتخاب کنید");
     //Reason : برای اینکه مطمئن شویم دیتایی که به سمت بک اند میرود با فرانت یکی است
-    cy.get('[data-cy="automation"]')
-      .select("Yes")
-      .should("have.value", "yes")
-      .should("be.selected");
+    cy.get('[data-cy="automation"]').select("Yes").should("have.value", "yes");
+    cy.log("فیلد Email را با یک ایمیل معتبر تکمیل کنید");
+    cy.get('[data-cy="email"]')
+      .type("faeze.chenani@gmail.com")
+      .should("have.value", "faeze.chenani@gmail.com");
+    cy.log("در فیلد Message یک متن دلخواه وارد کنید");
+    cy.get('[data-cy="message"]')
+      .type("I am a qa intern")
+      .should("not.be.empty");
+    cy.log("روی دکمه Submit کلیک کنید");
+    cy.get('[data-cy="submit-btn"]').click();
+    cy.on("window:alert", (alertText) => {
+      expect(alertText).to.eq("Message received!");
+    });
   });
 });
