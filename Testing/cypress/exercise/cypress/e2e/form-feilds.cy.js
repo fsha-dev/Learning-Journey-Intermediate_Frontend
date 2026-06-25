@@ -53,7 +53,7 @@ describe("Form Feilds", () => {
     cy.log("در فیلد Message یک متن دلخواه وارد کنید");
     cy.get('[data-cy="message"]')
       .type("I am a qa intern")
-      .should("not.be.empty");
+      .should("have.value", "I am a qa intern");
     cy.log("روی دکمه Submit کلیک کنید");
     cy.get('[data-cy="submit-btn"]').click();
     cy.on("window:alert", (alertText) => {
