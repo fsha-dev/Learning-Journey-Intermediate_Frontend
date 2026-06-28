@@ -44,6 +44,8 @@ describe("Form Fields", () => {
     cy.log("از لیست کشویی «Do you like automation?» گزینه Yes را انتخاب کنید");
     //Reason : برای اینکه مطمئن شویم دیتایی که به سمت بک اند میرود با فرانت یکی است
     cy.get('[data-cy="automation"]').select("Yes").should("have.value", "yes");
+    cy.log("بررسی کنید که Automation tools نمایش داده بشود");
+    cy.contains("Automation tools").should("be.visible");
     cy.log("فیلد Email را با یک ایمیل معتبر تکمیل کنید");
     //Reason : پایدارترین سلکتور
     cy.get('[data-cy="email"]')
