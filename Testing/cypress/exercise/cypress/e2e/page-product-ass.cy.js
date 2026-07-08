@@ -37,11 +37,12 @@ describe("Product Page", () => {
   it("search product item in search feild", () => {
     cy.get("#search_product").as("search").should("have.attr", "name");
     cy.get("@search").type("Blue Top");
-    cy.get("#search_submit").click();
-    cy.get(".single_products").find("p").should("contain.text", "Blue Top");
+    cy.get("#submit_search").click();
+    cy.get(".features_items").find("p").should("contain.text", "Blue Top");
     cy.get("@search").clear();
     cy.get("@search").type("abcdefg12345");
-    cy.get(".single_products").find("p").should("not.contain.text", "Blue Top");
+    cy.get("#submit_search").click();
+    cy.get(".features_items").should("not.contain.text", "Blue Top");
     cy.get(".title").should("have.text", "Searched Products");
   });
 });
