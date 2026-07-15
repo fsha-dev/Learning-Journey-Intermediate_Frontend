@@ -45,6 +45,19 @@ describe("share location", () => {
       .type("Dummy Name")
       .should("have.value", "Dummy Name");
     cy.get('[data-cy="share-loc-btn"]').as("share-btn").click();
+    // Your application executes:
+
+//navigator.clipboard.writeText(user.location.url);
+
+//Imagine there's a bug.
+
+//Instead of
+
+//https://www.bing.com/maps?...37.5...48.01...John
+
+//it sends
+
+//hello world
     cy.get("@saveLocClipboard").should(
       "have.been.calledWithMatch",
       new RegExp(`.*${37.5}.*${48.01}.*${encodeURI("Dummy Name")}`),
