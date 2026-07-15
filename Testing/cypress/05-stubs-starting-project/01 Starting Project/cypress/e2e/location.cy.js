@@ -10,7 +10,7 @@ describe("share location", () => {
             callBack({
               coords: {
                 latitude: 37.5,
-                logitude: 48.1,
+                longitude: 48.01,
               },
             });
           }, 300);
@@ -45,5 +45,9 @@ describe("share location", () => {
       .type("Dummy Name")
       .should("have.value", "Dummy Name");
     cy.get('[data-cy="share-loc-btn"]').as("share-btn").click();
+    cy.get("@saveLocClipboard").should(
+      "have.been.calledWithMatch",
+      new RegExp(`.*${37.5}.*${48.01}.*${encodeURI("Dummy Name")}`),
+    );
   });
 });
