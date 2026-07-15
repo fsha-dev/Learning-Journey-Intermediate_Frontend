@@ -15,6 +15,9 @@ describe("share location", () => {
             });
           }, 300);
         });
+      cy.stub(window.navigator.clipboard, "writeText")
+        .resolves()
+        .as("saveLocClipboard");
     });
   });
   it("should fetch the user location", () => {
@@ -41,7 +44,6 @@ describe("share location", () => {
     cy.get('[data-cy="name-input"]')
       .type("Dummy Name")
       .should("have.value", "Dummy Name");
-    cy.window().stub("navigator.clipboard");
     cy.get('[data-cy="share-loc-btn"]').as("share-btn").click();
   });
 });
