@@ -2,22 +2,20 @@
 
 describe("share location", () => {
   beforeEach(() => {
+    cy.fixture("user-location.json").as("userLocation");
     cy.visit("/").then((window) => {
-      cy.stub(window.navigator.geolocation, "getCurrentPosition")
-        .as("getUserPosition")
-        .callsFake((callBack) => {
-          setTimeout(() => {
-            callBack({
-              coords: {
-                latitude: 37.5,
-                longitude: 48.01,
-              },
-            });
-          }, 300);
-        });
-      cy.stub(window.navigator.clipboard, "writeText")
-        .resolves()
-        .as("saveLocClipboard");
+      cy.get("@userLocation").then((fakePosition) => {
+        cy.stub(window.navigator.geolocation, "getCurrentPosition")
+          .as("getUserPosition")
+          .callsFake((callBack) => {
+            setTimeout(() => {
+              callBack(fakePosition);
+            }, 300);
+          });
+        cy.stub(window.navigator.clipboard, "writeText")
+          .resolves()
+          .as("saveLocClipboard");
+      });
     });
   });
   it("should fetch the user location", () => {
@@ -47,17 +45,17 @@ describe("share location", () => {
     cy.get('[data-cy="share-loc-btn"]').as("share-btn").click();
     // Your application executes:
 
-//navigator.clipboard.writeText(user.location.url);
+    //navigator.clipboard.writeText(user.location.url);
 
-//Imagine there's a bug.
+    //Imagine there's a bug.
 
-//Instead of
+    //Instead of
 
-//https://www.bing.com/maps?...37.5...48.01...John
+    //https://www.bing.com/maps?...37.5...48.01...John
 
-//it sends
+    //it sends
 
-//hello world
+    //hello world
     cy.get("@saveLocClipboard").should(
       "have.been.calledWithMatch",
       new RegExp(`.*${37.5}.*${48.01}.*${encodeURI("Dummy Name")}`),
